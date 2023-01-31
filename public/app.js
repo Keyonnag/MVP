@@ -1,8 +1,10 @@
 let dinoTypeArray = []
 
-$('#homeBtn').click(() => { 
+homeBtn = getElementById('#homeBtn')
+
+
+$('#homeBtn').addEventListener('click',() => { 
     $("#dino-type-btn-cont").show();
-    $("#addNewDinoType").show();
     $("#caraousel-container").show();
 });
 
@@ -22,7 +24,7 @@ async function getDinoTypeForDropDown() {
         a.innerHTML = `${e.type}`
         console.log(a)
         a.innerHTML.addEventListener('click', (event) => {
-            event.target.hideHomePage();
+            hideHomePage();
         })
         li.append(a)
     });
@@ -33,8 +35,9 @@ getDinoTypeForDropDown();
 async function createCardList(){
 
 }
+
+
 function hideHomePage() {
-    $("#dino-type-btn-cont").hide();
     $("#dino-type-btn-cont").hide();
     $("#caraousel-container").hide();
     $("#addNewDinoType").hide();
