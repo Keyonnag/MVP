@@ -22,7 +22,6 @@ async function getDinoTypeForDropDown() {
         a.innerHTML = `${e.type}`
         console.log(a)
         a.innerHTML.addEventListener('click', (event) => {
-            event.target.hideHomePage()
         })
         li.append(a)
     });
@@ -37,6 +36,7 @@ function hideHomePage() {
     $("#dino-type-btn-cont").hide();
     $("#addNewDinoType").hide();
     $("#caraousel-container").hide();
+    $("#addNewDinoType").hide();
   };    
 
 
