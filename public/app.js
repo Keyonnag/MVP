@@ -21,13 +21,13 @@ async function getDinoTypeForDropDown() {
         a.classList.add("navbar-item")
         a.innerHTML = `${e.type}`
         console.log(a)
-        a.innerHTML.addEventListener('click', (event) => {
+        a.addEventListener('click', (event) => {
         })
         li.append(a)
     });
 };
 
-getDinoTypeForDropDowns();
+getDinoTypeForDropDown();
 
 async function createCardList(){
 
