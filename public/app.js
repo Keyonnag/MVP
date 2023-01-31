@@ -21,7 +21,8 @@ async function getDinoTypeForDropDown() {
         a.classList.add("navbar-item")
         a.innerHTML = `${e.type}`
         console.log(a)
-        a.addEventListener('click', (event) => {
+        a.innerHTML.addEventListener('click', (event) => {
+            event.target.hideHomePage();
         })
         li.append(a)
     });
@@ -34,7 +35,7 @@ async function createCardList(){
 }
 function hideHomePage() {
     $("#dino-type-btn-cont").hide();
-    $("#addNewDinoType").hide();
+    $("#dino-type-btn-cont").hide();
     $("#caraousel-container").hide();
     $("#addNewDinoType").hide();
   };    
