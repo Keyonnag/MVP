@@ -3,57 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="main.css">
     <script async src="app.js"></script>
     <title>Document</title> 
 </head>
 <bodys>
-    <nav class="navbar has-shadow	" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a class="navbar-item">
-            <img src="img/arkEmblem2.png" width="28" height="28">
-          </a>
-        </div>
-        <div id="navbarBasicExample" class="navbar-menu is-active">
-          <div class="navbar-start">
-            <a class="navbar-item">
-              Ark Tracker Home
-            </a>
-            <div class="navbar-item has-dropdown is-hoverable is-active">
-              <a class="navbar-link">
-                Dinosaur Types
-              </a>
-              <div id = "dropDown" class="navbar-dropdown">
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-      <section class="section">
-        <button id ="addNewDinoType" class="button js-modal-trigger" data-target="modal-add-dino-type">
-          <span class="icon is-small">
-            <i class="fa-sharp fa-solid fa-plus"></i>
-          </span>
-        </button>
-      </section>
-      <div id="dino-tipe-modal" class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">New Dinosaur Type</p>
-            <button class="delete" aria-label="close"></button>
-          </header>
-          <section class="modal-card-body">
-          </section>
-          <footer class="modal-card-foot">
-            <button class="button is-success">Create</button>
-            <button class="button">Cancel</button>
-          </footer>
-        </div>
-      </div>
-      </body>
-    </html>
+  <ul id="dropdown1" class="dropdown-content">
+  </ul>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo center"><i class="material-icons">cloud</i>My Ark Tracker</a>
+      <ul class="left hide-on-med-and-down">
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li class="active"><a class="waves-effect btn-flat">Home</a></li>
+      </ul>
+    </div>
+  </nav>
+</body>
+</html>
