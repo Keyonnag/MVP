@@ -1,6 +1,5 @@
 const express = require('express'); 
 const client = require('./pg');
-const postgres = require ("postgres");
 
 const dotenv = require("dotenv");
 dotenv.config();
