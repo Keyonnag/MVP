@@ -15,10 +15,7 @@ async function getDinoTypeForDropDown() {
         a.innerHTML = `${e.type}`
         div.append(a)
         console.log(a)
-        a.addEventListener('click', async (event) => {
-            const url = `https://ark-tracker.onrender.com/dino_by_type/${a.id}`
-            const response = await fetch(url)
-            let data = await response.json()
+        a.addEventListener('click', (event) => {
         })
     });
 };
