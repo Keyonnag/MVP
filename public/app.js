@@ -27,6 +27,6 @@ async function getDinoTypeForDropDown() {
 getDinoTypeForDropDown();
 
 
-const url = `https://ark-tracker.onrender.com/dino_by_type/${a.id}`
-const response = await fetch(url)
-dinoTypeArray = await response.json() 
+// const url = `https://ark-tracker.onrender.com/dino_by_type/${a.id}`
+// const response = await fetch(url)
+// dinoTypeArray = await response.json() 
