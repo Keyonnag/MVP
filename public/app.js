@@ -21,7 +21,7 @@ async function getDinoTypeForDropDown() {
         a.classList.add("navbar-item")
         a.innerHTML = `${e.type}`
         console.log(a)
-        a.id.addEventListener('click', (event) => {
+        a.innerHTML.addEventListener('click', (event) => {
             hideHomePage()
         })
         li.append(a)
