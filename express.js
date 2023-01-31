@@ -11,6 +11,17 @@ const url = process.env.DATABASE_URL
 app.use(express.json());
 app.use(express.static("public"));
 
+app.route('/dino/types')
+// get all
+    .get( async (req,res) => {
+        try {
+            const result = await client.query('SELECT * FROM dino_types')
+            res.status(200).json(result.rows)
+        } catch (error) {
+            res.status(500).type('text/plain').send(error)
+        }
+    }) 
+
 
 app.route('/dinos')
 // get all
@@ -28,7 +39,7 @@ app.route('/dinos')
         console.log(body)
         if (createDinoValidation(body)) {
             try {
-                const result = await client.query('INSERT INTO dinos (type, name, gender, health, stamina, weight, melee) VALUES ($1, $2, $3, $4, $5, $6, $7)', [body.type, body.name, body.gender, body.health, body.stamina, body.weight, body.melee])
+                const result = await client.query('INSERT INTO dinos (dino_type_id, name, gender, health, stamina, weight, melee) VALUES ($1, $2, $3, $4, $5, $6, $7)', [body.name, body.gender, body.health, body.stamina, body.weight, body.melee])
                 res.status(200).type('application/json').send('Dino Added Successfully')
             } catch (error) {
                 res.status(500).type('text/plain').send(error)
@@ -55,7 +66,7 @@ app.route ('/dinos/:id')
         let { body } = req
         if (createDinoValidation(body)) {
             try {
-                const result = client.query ('UPDATE dinos SET type = $1, name = $2, gender = $3, health = $4, stamina = $5, weight = $6, melee = $7 WHERE dino_id = $8', [body.type, body.name, body.gender, body.health, body.stamina, body.weight, body.melee, id])
+                const result = client.query ('UPDATE dinos name = $2, gender = $3, health = $4, stamina = $5, weight = $6, melee = $7 WHERE dino_id = $8', [body.type, body.name, body.gender, body.health, body.stamina, body.weight, body.melee, id])
                 res.status(200).type('application/json').send('Dino Updated Successfully')
             } catch(error) {
                 res.status(500).type('text/plain').send(error)
