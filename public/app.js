@@ -22,7 +22,7 @@ async function getDinoTypeForDropDown() {
         a.innerHTML = `${e.type}`
         console.log(a)
         a.innerHTML.addEventListener('click', (event) => {
-            hideHomePage()
+            event.target.hideHomePage()
         })
         li.append(a)
     });
