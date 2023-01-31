@@ -1,5 +1,6 @@
 const express = require('express'); 
 const client = require('./pg');
+const postgres = require ("postgres");
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -9,6 +10,7 @@ const port = process.env.PORT || 3000
 const url = process.env.DATABASE_URL
 
 app.use(express.json());
+app.use(express.static("public"));
 
 
 app.route('/dinos')
