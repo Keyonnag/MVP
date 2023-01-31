@@ -15,9 +15,12 @@ async function getDinoTypeForDropDown() {
         a.innerHTML = `${e.type}`
         div.append(a)
         console.log(a)
+        a.addEventListener('click', (e) => {
+            
+        })
     });
 };
 
-await getDinoTypeForDropDown();
+getDinoTypeForDropDown();
 
 
