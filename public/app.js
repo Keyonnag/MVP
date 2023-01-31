@@ -1,12 +1,5 @@
 let dinoTypeArray = []
 
-homeBtn = getElementById('#homeBtn')
-
-
-$('#homeBtn').addEventListener('click',() => { 
-    $("#dino-type-btn-cont").show();
-    $("#caraousel-container").show();
-});
 
 async function getDinoTypeForDropDown() {
     const div = document.getElementById('dropdown1')
@@ -23,9 +16,6 @@ async function getDinoTypeForDropDown() {
         a.classList.add("navbar-item")
         a.innerHTML = `${e.type}`
         console.log(a)
-        a.innerHTML.addEventListener('click', (event) => {
-            hideHomePage();
-        })
         li.append(a)
     });
 };
@@ -35,16 +25,7 @@ getDinoTypeForDropDown();
 async function createCardList(){
 
 }
-
-
-function hideHomePage() {
-    $("#dino-type-btn-cont").hide();
-    $("#caraousel-container").hide();
-    $("#addNewDinoType").hide();
-  };    
-
-
-
+    
 // async function carousolGetDinoList(){}
 // async function createDinoType(){}
 
