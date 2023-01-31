@@ -1,7 +1,7 @@
 let dinoTypeArray = []
 
 function dropdowns() {
-    var dropdowns = document.getElementById('navDropDown');
+    var dropdowns = document.querySelectorAll('.dropdown:not(.is-hoverable)');
 
     if (dropdowns.length > 0) {
         dropdowns.forEach(function (el) {
