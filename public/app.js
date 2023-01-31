@@ -13,7 +13,7 @@ async function getDinoTypeForDropDown() {
         div.append(li)
         const a = document.createElement('a')
         a.id = `${e.dino_type_id}`
-        a.classList.add("navbar-item")
+        a.classList.add("navbar-item", "waves-effect", "waves-teal", "btn-flat")
         a.innerHTML = `${e.type}`
         console.log(a)
         li.append(a)
@@ -21,6 +21,7 @@ async function getDinoTypeForDropDown() {
 };
 
 getDinoTypeForDropDown();
+ 
 
 async function createCardList(){
 

@@ -20,9 +20,14 @@
   body {
       background-color: #000000;
   }
+
+  #dino-type-btn-con {
+    display: block;
+  }
   
   .carousel {
       height: 700px;
+      display: block;
       perspective: 600px;
       transform: translateY(-100px);
   }
