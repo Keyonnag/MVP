@@ -15,6 +15,10 @@ async function getDinoTypeForDropDown() {
         a.id = `${e.dino_type_id}`
         a.classList.add("navbar-item", "waves-effect", "waves-teal", "btn-flat")
         a.innerHTML = `${e.type}`
+        a.id.addEventlistner('click', () => {
+            $("#dino-type-btn-cont").hide();
+            $("#caraousel-containe").show();
+        })
         console.log(a)
         li.append(a)
     });
