@@ -1,9 +1,23 @@
+let dinoTypeArray = []
+
+
+
 async function getDinoTypeForDropDown() {
+    const div = document.getElementById('dropDown')
     const url = "https://ark-tracker.onrender.com/dino/types"
     const response = await fetch(url)
-    const data = await response.json() 
-    console.log(data)
-}
+    dinoTypeArray = await response.json() 
+    console.log(dinoTypeArray)
+    dinoTypeArray.forEach((e) => {
+        const a = document.createElement('a')
+        a.id = `${e.dino_type_id}`
+        a.classList.add("navbar-item")
+        a.innerHTML = `${e.type}`
+        div.append(a)
+        console.log(a)
+    });
+};
 
-getDinoTypeForDropDown();
+await getDinoTypeForDropDown();
+
 
