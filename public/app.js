@@ -31,11 +31,9 @@ async function createNavbarDropDown(arr){
 
 async function createDinoTypeSelectorForDropDown(arr) {
     const div = document.getElementById('DinoTypeSelector')
+    $("#DinoTypeSelector").html('');
     arr.forEach((e) => {
-        const option = document.createElement('option')
-        option.value = `${e.dino_type_id}`
-        option.innerHTML = `${e.type}`
-        div.append(option)
+        $("#mySelect").append("<option value='" + e.dino_type_id + "'>" + e.type + "</option>");
     })
 }
 
