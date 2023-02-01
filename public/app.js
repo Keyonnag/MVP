@@ -52,7 +52,7 @@ function createCollectionList(arr){
         let meleeData = e.melee
 
       const column = document.createElement('div')
-      column.classList.add("col s6")
+      column.classList.add("col," "s6")
       row.append(column)
 
       const collection = document.createElement('ul')
