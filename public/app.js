@@ -7,6 +7,7 @@ async function getDinoTypeForDropDown() {
     // createDinoTypeSelectorForDropDown(dinoTypeArray)
 };
 
+
 getDinoTypeForDropDown();
 // todo: add an event listenert to hand database updates
 
@@ -40,7 +41,28 @@ async function createNavbarDropDown(arr){
 //     // })
 // }
 
+$('#createDinoBtn').addEventListener('submit', function (event) {
 
+	event.preventDefault();
+    console.log(JSON.stringify(Object.fromEntries(new FormData(event.target))))
+
+	// fetch('https://ark-tracker.onrender.com/dinos', {
+	// 	method: 'POST',
+	// 	body: JSON.stringify(Object.fromEntries(new FormData(event.target))),
+	// 	headers: {
+	// 		'Content-type': 'application/json; charset=UTF-8'
+	// 	}
+	// }).then(function (response) {
+	// 	if (response.ok) {
+	// 		return response.json();
+	// 	}
+	// 	return Promise.reject(response);
+	// }).then(function (data) {
+	// 	console.log(data);
+	// }).catch(function (error) {
+	// 	console.warn(error);
+	// });
+});
 
 
 async function getDinosByType(id){
