@@ -33,7 +33,7 @@ async function createNavbarDropDown(arr){
 
 
 async function getDinosByType(id){
-    const url = `https://ark-tracker.onrender.com/dino_by_type/${id}`
+    const url = `https://ark-tracker.onrender.com/dino/type/${id}`
     const response = await fetch(url)
     data = await response.json() 
     console.log(data)
