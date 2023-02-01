@@ -17,26 +17,29 @@
 <body>
   <ul id="dropdown1" class="dropdown-content">
   </ul>
+
   <nav class="light-blue accent-1">
     <div class="nav-wrapper">
       <a href="#!" class="brand-logo center black-text"><i class="material-icons">cloud</i>My Ark Tracker</a>
       <ul class="left">
         <li><a class="dropdown-trigger black-text" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li id="homeBtn" class="active"><a class="waves-effect btn-flat black-text">Home</a></li>
+        <li id="homeBtn"><a class="waves-effect btn-flat black-text">Home</a></li>
+        <li  id="addTypeBtn"><a class="waves-effect btn-flat black-text modal-trigger tooltipped"data-target="addNewDinoType" data-position="bottom" data-tooltip="Add a new Dinasuar Type!">Add Type</a></li>
+        <li  id="addeDinoButton"><a class="waves-effect btn-flat black-text modal-trigger tooltipped"data-target="addNewDino" data-position="bottom" data-tooltip="Add a new Dinasuar!">New Dino</a></li>
       </ul>
     </div>
   </nav>
-  <div id="dino-type-btn-cont" class="section">
+
+  <div class="section">
     <div class="row">
       <div class="col s1 offset-s1">
-        <a class="btn-floating btn-med waves-effect waves-light pink modal-trigger tooltipped" data-target="addNewDinoType" data-position="bottom" data-tooltip="Add a new Dinasuar type!"><i class="material-icons">add</i></a>
       </div>
     </div>
   </div>
+
   <div id="addNewDinoType" class="modal">
     <div class="modal-content">
       <h4>Add Dinosaur Type</h4>
-
       <div class="row">
         <form class="col s12">
           <div class="row modal-form-row">
@@ -49,9 +52,62 @@
       </div>
     </div>
     <div class="modal-footer">
-      <a class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+      <a id="createDinoTypeBtn" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
     </div>
   </div>
+
+  <div id="addNewDino" class="modal">
+    <div class="modal-content">
+      <h4>Add Dinosaur Information</h4>
+      <div class="row">
+        <form class="col s12">
+          
+          <div class="input-field col s7 offset-s3">
+            <select>
+              <option value="" disabled selected>Select Dinasuar Type</option>
+              <option value="1">Option 1</option>
+            </select>
+            <label>Materialize Select</label>
+          </div>
+
+          <div class="input-field col s6">
+            <input id="dyno_name" type="text" class="validate">
+            <label for="dyno_name">Dinasuar Name</label>
+          </div>
+
+          <div class="input-field col s6">
+            <input id="dyno_gender" type="text" class="validate">
+            <label for="dyno_gender">Gender</label>
+          </div>
+
+          <div class="input-field col s3">
+            <input id="dyno_health" type="number" class="validate">
+            <label for="dyno_health">Health</label>
+          </div>
+
+          <div class="input-field col s3">
+            <input id="dyno_stamina" type="number" class="validate">
+            <label for="dyno_stamina">Stamina</label>
+          </div>
+
+          <div class="input-field col s3">
+            <input id="dyno_weight" type="number" class="validate">
+            <label for="dyno_weight">Weight</label>
+          </div>
+
+          <div class="input-field col s3">
+            <input id="dyno_melee" type="number" class="validate">
+            <label for="dyno_melee">Melee</label>
+          </div>
+
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a id="createDinoBtn" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+    </div>
+  </div>
+
   <div id="caraousel-container" class="container">
     <div class="carousel">
       <div id="1" class="carousel-item">
@@ -91,46 +147,20 @@
   
     </div>
   </div>
+
   <div id="dinoCollectionById" class="container">
     <div id="dinoByTypeRow" class="row">
-      <div class="col s6">
-        <ul class="collection">
-          <li class="collection-item avatar">
-            <img src="img/arkEmblem.png" alt="" class="circle">
-            <span class="title">Name</span>
-            <li class="collection-item avatar">
-              <i class="material-icons circle">transgender</i>
-              <p>gender</p>
-            </li>
-            <li class="collection-item avatar">
-              <i class="material-icons circle red">favorite</i>
-              <span class="title">Health</span>
-              <p>23423</p>
-            </li>
-            <li class="collection-item avatar">
-              <i class="material-icons circle yellow">bolt</i>
-              <span class="title">stamina</span>
-              <p>23423</p>
-            </li>
-            <li class="collection-item avatar">
-              <i class="material-icons circle indigo">fitness_center</i>
-              <span class="title">weight</span>
-              <p>23423</p>
-            </li>
-            <li class="collection-item avatar">
-              <i class="material-icons circle orange">sports_martial_arts</i>
-              <span class="title">melee</span>
-              <p>143</p>
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
+  </div>
+
 </body>
+
 <script>
   $(document).ready(function(){
   $('.dropdown-trigger').dropdown();
-  $('.modal').modal();
+  $('select').formSelect();
+  $('#addNewDinoType').modal();
+  $('#addNewDino').modal();
   $('.carousel').carousel();
   $('.tooltipped').tooltip();
   $("#homeBtn").click(function(){
@@ -140,4 +170,5 @@
 });
 });
 </script>
+
 </html>
