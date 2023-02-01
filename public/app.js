@@ -4,7 +4,7 @@ async function getDinoTypeForDropDown() {
     const response = await fetch(url)
     const dinoTypeArray = await response.json() 
     createNavbarDropDown(dinoTypeArray)
-    createDinoTypeSelectorForDropDown(dinoTypeArray)
+    // createDinoTypeSelectorForDropDown(dinoTypeArray)
 };
 
 getDinoTypeForDropDown();
@@ -29,16 +29,16 @@ async function createNavbarDropDown(arr){
     });
 };
 
-async function createDinoTypeSelectorForDropDown(arr) {
-    const div = $('#DinoTypeSelector')
-    // arr.forEach((e) => {
-        const option = document.createElement('option')
-        option.value = 1 //`${e.dino_type_id}`
-        option.innerHTML = 'test' //`${e.type}`
-        div.append(option)
-        console.log(option)
-    // })
-}
+// async function createDinoTypeSelectorForDropDown(arr) {
+//     const div = $('#DinoTypeSelector')
+//     // arr.forEach((e) => {
+//         const option = document.createElement('option')
+//         option.value = 1 //`${e.dino_type_id}`
+//         option.innerHTML = 'test' //`${e.type}`
+//         div.append(option)
+//         console.log(option)
+//     // })
+// }
 
 
 
