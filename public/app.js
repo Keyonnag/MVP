@@ -1,5 +1,3 @@
-const { data } = require("jquery")
-
 let dinoTypeArray = []
 
 
