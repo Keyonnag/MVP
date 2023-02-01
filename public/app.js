@@ -5,13 +5,14 @@ async function getDinoTypeForDropDown() {
     const url = "https://ark-tracker.onrender.com/dino/types"
     const response = await fetch(url)
     dinoTypeArray = await response.json() 
-    console.log(dinoTypeArray)
+    createNavbarDropDown(dinoTypeArray)
 };
+
 getDinoTypeForDropDown();
 
-function createNavbarDropDown(){
+async function createNavbarDropDown(arr){
     const div = document.getElementById('dropdown1')
-    dinoTypeArray.forEach((e) => {
+    arr.forEach((e) => {
         const li = document.createElement('li')
         div.append(li)
         const a = document.createElement('a')
@@ -27,7 +28,8 @@ function createNavbarDropDown(){
         li.append(a)
     });
 };
-createNavbarDropDown();
+
+
 
 
 async function getDinosByType(id){
