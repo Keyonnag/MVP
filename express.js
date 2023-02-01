@@ -21,6 +21,20 @@ app.route('/dino/types')
             res.status(500).type('text/plain').send(error)
         }
     })
+    .post( async (req, res ) => {
+        let { body } = req
+        console.log(body)
+        if (createDinoTypeValidation(body)) {
+            try {
+                await client.query('INSERT INTO dino_types (type) VALUES ($1)', [body.type])
+                res.status(200).type('application/json').send('Dino Type Added Successfully')
+            } catch (error) {
+                res.status(500).type('text/plain').send(error)
+            };
+        } else {
+            res.status(400).type('text/plain').send('BAD REQUEST')
+        }
+    })
 
 app.route('/dino/type/:id')
     .get( async ( req, res ) => {
@@ -49,7 +63,7 @@ app.route('/dinos')
         console.log(body)
         if (createDinoValidation(body)) {
             try {
-                const result = await client.query('INSERT INTO dinos (dino_type_id, name, gender, health, stamina, weight, melee) VALUES ($1, $2, $3, $4, $5, $6, $7)', [body.name, body.gender, body.health, body.stamina, body.weight, body.melee])
+                await client.query('INSERT INTO dinos (dino_type_id, name, gender, health, stamina, weight, melee) VALUES ($1, $2, $3, $4, $5, $6, $7)', [body.dino_type_id, body.name, body.gender, body.health, body.stamina, body.weight, body.melee])
                 res.status(200).type('application/json').send('Dino Added Successfully')
             } catch (error) {
                 res.status(500).type('text/plain').send(error)
@@ -109,31 +123,44 @@ app.listen(port, () => {
 // post data valid datiion
 function createDinoValidation(obj) {
     let type = false;
-    let dino_name = false;
+    let name = false;
     let gender = false;
     let health = false;
     let stamina = false;
     let weight = false;
     let melee = false;
     for (key in obj) {
-        if (key === 'type' && obj[key] !== '' && (typeof obj[key]) === 'string') {
+        if (key === 'dino_type_id' && obj[key] !== NaN) {
             type = true;
         } else if (key === 'name' && obj[key] !== '' && (typeof obj[key]) === 'string') {
-            dino_name = true;
+            name = true;
         } else if (key === 'gender' && obj[key] !== '' && (typeof obj[key]) === 'string') {
             gender = true;
-        } else if (key === 'health' && (typeof obj[key] === 'number') && obj[key] !== null) {
+        } else if (key === 'health' && obj[key] !== NaN) {
             health = true;
-        } else if (key === 'stamina' && (typeof obj[key] === 'number') && obj[key] !== null) {
+        } else if (key === 'stamina' && obj[key] !== NaN) {
             stamina = true;
-        } else if (key === 'weight' && (typeof obj[key] === 'number') && obj[key] !== null) {
+        } else if (key === 'weight' && obj[key] !== NaN) {
             weight = true;
-        } else if (key === 'melee' && (typeof obj[key] === 'number') && obj[key] !== null) {
+        } else if (key === 'melee' && obj[key] !== NaN) {
             melee = true;
         }
     }
-    if (type && dino_name && gender && health && stamina && weight && melee) {
+    if (type && name && gender && health && stamina && weight && melee) {
         return true
     } else return false
+}
+
+function createDinoTypeValidation(obj) {
+    let type = false;
+    for (key in obj) {
+        if (key === 'type' && obj[key] !== '' && (typeof obj[key]) === 'string') {
+            type = true;
+        }
+    }
+     
+    if (type) {
+        return true
+    } else return false;
 }
 

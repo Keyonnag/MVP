@@ -1,15 +1,58 @@
+const apiURL = ""
+const createDinoBtn = document.getElementById("createDinoBtn")
+const createDinoTypeBtn = document.getElementById('createDinoTypeBtn')
+const deleteButton = $('.deleteBtn')
+const updateButton = $('.updateBtn')
 
 async function getDinoTypeForDropDown() {
-    const url = "https://ark-tracker.onrender.com/dino/types"
+    const url = `${apiURL}/dino/types`
     const response = await fetch(url)
     const dinoTypeArray = await response.json() 
     createNavbarDropDown(dinoTypeArray)
-    // createDinoTypeSelectorForDropDown(dinoTypeArray)
+    createDinoTypeSelectorForDropDown(dinoTypeArray)
 };
+
+const createNewDino = async (dinoType, dinoName, dinoGender, dinoHealth, dinoStamina, dinoWeight, dinoMelee) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+            "dino_type_id": `${dinoType}`,
+            "name": `${dinoName}`,
+            "gender": `${dinoGender}`,
+            "health": `${dinoHealth}`,
+            "stamina": `${dinoStamina}`,
+            "weight": `${dinoWeight}`,
+            "melee": `${dinoMelee}`
+        })
+    }
+
+    const response = await fetch(`${apiURL}/dinos`, options)
+    const sqlQuery = await response.json()
+}
+
+const createNewDinoType = async (dinoType) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+            "type": `${dinoType}`
+        })
+    }
+
+    const response = await fetch(`${apiURL}/dino/types`, options)
+    const sqlQuery = await response.json()
+}
 
 
 getDinoTypeForDropDown();
-// todo: add an event listenert to hand database updates
+// todo: add an event listenert to handle database updates
 
 async function createNavbarDropDown(arr){
     const div = document.getElementById('dropdown1')
@@ -19,50 +62,54 @@ async function createNavbarDropDown(arr){
         const a = document.createElement('a')
         a.id = `${e.dino_type_id}`
         a.classList.add("navbar-item", "waves-effect", "waves-teal", "btn-flat")
-        a.innerHTML = `${e.type}`
+        a.innerText = `${e.type}`
         a.addEventListener('click', (event) => {
             $("#dino-type-btn-cont").hide();
             $("#caraousel-container").hide();
             getDinosByType(a.id)
         })
-        console.log(a)
         li.append(a)
     });
 };
 
-// async function createDinoTypeSelectorForDropDown(arr) {
-//     const div = $('#DinoTypeSelector')
-//     // arr.forEach((e) => {
-//         const option = document.createElement('option')
-//         option.value = 1 //`${e.dino_type_id}`
-//         option.innerHTML = 'test' //`${e.type}`
-//         div.append(option)
-//         console.log(option)
-//     // })
-// }
-// const createDinoBtn = document.getElementById('createDinoBtn')
+async function createDinoTypeSelectorForDropDown(arr) {
+    const div = document.getElementById('DinoTypeSelector')
+    arr.forEach((e) => {
+        const option = document.createElement('option')
+        option.value = `${e.dino_type_id}`
+        option.innerText =`${e.type}`
+        div.appendChild(option)
+    })
+    $(document).ready(function() {
+        $('select').formSelect();
+    });
+    console.log(div)
+}
 
-function getData(form) {
-    var formData = new FormData(form);
-  
-    // iterate through entries...
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ": " + pair[1]);
-    }
-  
-    // ...or output as an object
-    console.log(Object.fromEntries(formData));
-  }
-  
-  const createDinoBtn = document.getElementById("#createDinoBtn")
-  createDinoBtn.addEventListener("submit", function (e) {
+
+createDinoBtn.addEventListener("click", function (e) {
     e.preventDefault();
-    getData(e.target);
-  });
+    const dinoType = document.getElementById('DinoTypeSelector')
+    const dinoName = document.getElementById('dyno_name')
+    const dinoGender = document.getElementById('dyno_gender')      
+    const dinoHealth = document.getElementById('dyno_health')      
+    const dinoStamina = document.getElementById('dyno_stamina')      
+    const dinoWeight = document.getElementById('dyno_weight')      
+    const dinoMelee = document.getElementById('dyno_melee')
+    
+    createNewDino(dinoType.value, dinoName.value, dinoGender.value, dinoHealth.value, dinoStamina.value, dinoWeight.value, dinoMelee.value)
+});
+
+createDinoTypeBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    const dinoTypeName = document.getElementById('dinoTypeName')    
+    createNewDinoType(dinoTypeName.value)
+});
+
 
 
 async function getDinosByType(id){
-    const url = `https://ark-tracker.onrender.com/dino/type/${id}`
+    const url = `${apiURL}/dino/type/${id}`
     const response = await fetch(url)
     data = await response.json() 
     console.log(data)
@@ -74,7 +121,6 @@ function createCollectionList(arr){
     const row = document.getElementById('dinoByTypeRow');
     $("#dinoByTypeRow").empty();
     $("#dinoByTypeRow").show();
-
     arr.forEach((e) => {
         let dinoNameData = e.name
         let genderData = e.gender
@@ -82,6 +128,7 @@ function createCollectionList(arr){
         let staminaData = e.stamina
         let weightData = e.weight
         let meleeData = e.melee
+        let idData = e.dino_id
 
       const column = document.createElement('div')
       column.classList.add("col", "s6")
@@ -104,6 +151,23 @@ function createCollectionList(arr){
       dinoName.classList.add('title')
       dinoName.innerHTML = dinoNameData
       nameList.append(dinoName)
+
+      const dinoP = document.createElement('li')
+      nameList.append(dinoP)
+
+    //   <a class="waves-effect waves-light btn-small">Button</a>
+
+    const dinoUpdate = document.createElement('a')
+    dinoUpdate.classList.add('left', `updateBtn`, 'waves-effect', 'waves-light', 'btn-small')
+    dinoUpdate.id = idData
+    dinoUpdate.innerHTML = 'Update'
+    dinoP.append(dinoUpdate)
+
+      const dinoDel = document.createElement('a')
+      dinoDel.classList.add('right', `deleteBtn`,'waves-effect', 'waves-light', 'btn-small', 'red')
+      dinoDel.id = idData
+      dinoDel.innerHTML = 'Delete'
+      dinoP.append(dinoDel)
       
       const genderList = document.createElement('li')
       genderList.classList.add('collection-item', 'avatar')
@@ -198,15 +262,3 @@ function createCollectionList(arr){
     })
     console.log(row)
 }
-
-// var form = document.querySelector('form');
-// var data = new FormData(form);
-// console.log(data)
-    
-// async function carousolGetDinoList(){}
-// async function createDinoType(){}
-
-
-// const url = `https://ark-tracker.onrender.com/dino_by_type/${a.id}`
-// const response = await fetch(url)
-// dinoTypeArray = await response.json() 
