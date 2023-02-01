@@ -20,8 +20,18 @@ app.route('/dino/types')
         } catch (error) {
             res.status(500).type('text/plain').send(error)
         }
-    }) 
+    })
 
+app.route('/dino/type/:id')
+    .get( async ( req, res ) => {
+        let { id } = req.params
+        try {
+            const result = await client.query('SELECT * FROM dinos WHERE dino_type_id = $1', [ id ])
+            res.status(200).type('application/json').json(result.rows)
+        } catch {
+            res.status(500).type('text/plain').send(error)
+        }
+    })
 
 app.route('/dinos')
 // get all

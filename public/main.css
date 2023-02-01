@@ -20,6 +20,10 @@
   body {
       background-color: #000000;
   }
+  .collection .collection-item {
+    background-color: rgb(50, 65, 74);
+    color:#ffffff
+  }
 
   #dino-type-btn-con {
     display: block;
