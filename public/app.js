@@ -43,7 +43,9 @@ async function getDinosByType(id){
  
 function createCollectionList(arr){
     const row = document.getElementById('dinoByTypeRow');
-    $("#dinoByTypeRow").empty();    
+    $("#dinoByTypeRow").empty();
+    $("#dinoByTypeRow").show();
+
     arr.forEach((e) => {
         let dinoNameData = e.name
         let genderData = e.gender
