@@ -1,3 +1,5 @@
+const { data } = require("jquery")
+
 let dinoTypeArray = []
 
 
@@ -37,7 +39,7 @@ async function getDinosByType(id){
     const response = await fetch(url)
     data = await response.json() 
     console.log(data)
-    createCollectionList(arr)
+    createCollectionList(data)
 }
 
  
