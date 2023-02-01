@@ -60,7 +60,6 @@ app.route('/dinos')
 // Create one
     .post( async (req, res ) => {
         let { body } = req
-        console.log(body)
         if (createDinoValidation(body)) {
             try {
                 await client.query('INSERT INTO dinos (dino_type_id, name, gender, health, stamina, weight, melee) VALUES ($1, $2, $3, $4, $5, $6, $7)', [body.dino_type_id, body.name, body.gender, body.health, body.stamina, body.weight, body.melee])
@@ -87,10 +86,11 @@ app.route ('/dinos/:id')
 // update one
     .put ( async ( req, res ) => {
         let { id } = req.params
-        let { body } = req
+        let { body } = req   
         if (createDinoValidation(body)) {
             try {
-                const result = client.query ('UPDATE dino_type_id = $1 dinos name = $2, gender = $3, health = $4, stamina = $5, weight = $6, melee = $7 WHERE dino_id = $8', [body.type, body.name, body.gender, body.health, body.stamina, body.weight, body.melee, id])
+                console.log(body)
+                await client.query (`UPDATE dinos SET dino_type_id = ${body.dino_type_id}, name = '${body.name}', gender = '${body.gender}', health = ${body.health}, stamina = ${body.stamina}, weight = ${body.weight}, melee = ${body.melee} WHERE dino_id = ${id}`)
                 res.status(200).type('application/json').send('Dino Updated Successfully')
             } catch(error) {
                 res.status(500).type('text/plain').send(error)

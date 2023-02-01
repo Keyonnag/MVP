@@ -2,9 +2,7 @@ const apiURL = ""
 const createDinoBtn = document.getElementById("createDinoBtn")
 const updateDinoBtn = document.getElementById("updateDinoBtn")
 const createDinoTypeBtn = document.getElementById('createDinoTypeBtn')
-const deleteButton = $('.deleteBtn')
-const updateButton = $('.updateBtn')
-let dinoUpdateId = NaN
+let dinoUpdateId;
 
 
 async function getDinoTypeForDropDown() {
@@ -14,70 +12,6 @@ async function getDinoTypeForDropDown() {
     createNavbarDropDown(dinoTypeArray)
     createDinoTypeSelectorForDropDown(dinoTypeArray)
 };
-
-const createNewDino = async (dinoType, dinoName, dinoGender, dinoHealth, dinoStamina, dinoWeight, dinoMelee) => {
-    const options = {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'content-type': 'application/json',
-        },
-        body: JSON.stringify({
-            "dino_type_id": `${dinoType}`,
-            "name": `${dinoName}`,
-            "gender": `${dinoGender}`,
-            "health": `${dinoHealth}`,
-            "stamina": `${dinoStamina}`,
-            "weight": `${dinoWeight}`,
-            "melee": `${dinoMelee}`
-        })
-    }
-
-    const response = await fetch(`${apiURL}/dinos`, options)
-    const sqlQuery = await response.json()
-}
-
-const updateNewDino = async (dinoType, dinoName, dinoGender, dinoHealth, dinoStamina, dinoWeight, dinoMelee, id) => {
-    const options = {
-        method: 'PUT',
-        headers: {
-            'Accept': 'application/json',
-            'content-type': 'application/json',
-        },
-        body: JSON.stringify({
-            "dino_type_id": `${dinoType}`,
-            "name": `${dinoName}`,
-            "gender": `${dinoGender}`,
-            "health": `${dinoHealth}`,
-            "stamina": `${dinoStamina}`,
-            "weight": `${dinoWeight}`,
-            "melee": `${dinoMelee}`
-        })
-    }
-
-    const response = await fetch(`${apiURL}/dinos/${id}`, options)
-    const sqlQuery = await response.json()
-}
-
-const createNewDinoType = async (dinoType) => {
-    const options = {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'content-type': 'application/json',
-        },
-        body: JSON.stringify({
-            "type": `${dinoType}`
-        })
-    }
-
-    const response = await fetch(`${apiURL}/dino/types`, options)
-    const sqlQuery = await response.json()
-}
-
-
-getDinoTypeForDropDown();
-// todo: add an event listenert to handle database updates
 
 async function createNavbarDropDown(arr){
     const div = document.getElementById('dropdown1')
@@ -97,6 +31,8 @@ async function createNavbarDropDown(arr){
     });
 };
 
+getDinoTypeForDropDown();
+
 async function createDinoTypeSelectorForDropDown(arr) {
     const div = document.getElementById('DinoTypeSelector')
     arr.forEach((e) => {
@@ -105,23 +41,84 @@ async function createDinoTypeSelectorForDropDown(arr) {
         option.innerText =`${e.type}`
         div.appendChild(option)
     })
-    $(document).ready(function() {
-        $('select').formSelect();
-    });
-}
-
-async function createDinoTypeSelectorForDropDown(arr) {
-    const div = document.getElementById('updateDinoTypeSelector')
+    const update = document.getElementById('updateDinoTypeSelector')
     arr.forEach((e) => {
         const option = document.createElement('option')
         option.value = `${e.dino_type_id}`
         option.innerText =`${e.type}`
-        div.appendChild(option)
+        update.appendChild(option)
     })
     $(document).ready(function() {
         $('select').formSelect();
     });
 }
+
+const createNewDinoType = async (dinoType) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+            "type": `${dinoType}`
+        })
+    }
+
+    const response = await fetch(`${apiURL}/dino/types`, options)
+    const sqlQuery = await response.json()
+}
+
+const createNewDino = async (dinoType, dinoName, dinoGender, dinoHealth, dinoStamina, dinoWeight, dinoMelee) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+            "dino_type_id": `${dinoType}`,
+            "name": `${dinoName}`,
+            "gender": `${dinoGender}`,
+            "health": `${dinoHealth}`,
+            "stamina": `${dinoStamina}`,
+            "weight": `${dinoWeight}`,
+            "melee": `${dinoMelee}`
+        })
+    }
+    console.log(options)
+
+    const response = await fetch(`${apiURL}/dinos`, options)
+    const sqlQuery = await response.json()
+}
+
+const updateDinoPutReq= async (dinoType, dinoName, dinoGender, dinoHealth, dinoStamina, dinoWeight, dinoMelee, id) => {
+    const options = {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+            "dino_type_id": `${dinoType}`,
+            "name": `${dinoName}`,
+            "gender": `${dinoGender}`,
+            "health": `${dinoHealth}`,
+            "stamina": `${dinoStamina}`,
+            "weight": `${dinoWeight}`,
+            "melee": `${dinoMelee}`
+        })
+    }
+    console.log(options )
+
+    const response = await fetch(`${apiURL}/dinos/${id}`, options)
+    const sqlQuery = await response.json()
+}
+
+
+
+// todo: add an event listenert to handle database updates
+
 
 createDinoBtn.addEventListener("click", function (e) {
     e.preventDefault();
@@ -138,16 +135,16 @@ createDinoBtn.addEventListener("click", function (e) {
 
 updateDinoBtn.addEventListener("click", function (e) {
     e.preventDefault();
-    const dinoType = document.getElementById('DinoTypeSelector')
+    const dinoType = document.getElementById('updateDinoTypeSelector')
     const dinoName = document.getElementById('update_dino_name')
     const dinoGender = document.getElementById('update_dino_gender')      
     const dinoHealth = document.getElementById('update_dino_health')      
     const dinoStamina = document.getElementById('update_dino_stamina')      
     const dinoWeight = document.getElementById('update_dino_weight')      
     const dinoMelee = document.getElementById('update_dino_melee')
-    console.log(e.target)
+    let id = dinoUpdateId
     
-    //updateNewDino(dinoName.value, dinoGender.value, dinoHealth.value, dinoStamina.value, dinoWeight.value, dinoMelee.value, id)
+    updateDinoPutReq(dinoType.value,dinoName.value, dinoGender.value, dinoHealth.value, dinoStamina.value, dinoWeight.value, dinoMelee.value, id)
 });
 
 createDinoTypeBtn.addEventListener("click", function (e) {
@@ -162,7 +159,6 @@ async function getDinosByType(id){
     const url = `${apiURL}/dino/type/${id}`
     const response = await fetch(url)
     data = await response.json() 
-    console.log(data)
     createCollectionList(data)
 }
 
@@ -218,8 +214,7 @@ function createCollectionList(arr){
       dinoUpdate.id = idData
       dinoUpdate.innerHTML = 'Update'
       dinoUpdate.addEventListener('click', (e) => {
-        dinoUpdateId = e.target.id;
-        console.log(dinoUpdateId)       
+        dinoUpdateId = e.target.id;       
       })
       dinoP.append(dinoUpdate)
 
@@ -323,5 +318,4 @@ function createCollectionList(arr){
       meleeList.append(melee)
       
     })
-    console.log(row)
 }
