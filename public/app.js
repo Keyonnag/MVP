@@ -54,7 +54,8 @@ function getData(form) {
     console.log(Object.fromEntries(formData));
   }
   
-  document.getElementById("#createDinoBtn").addEventListener("submit", function (e) {
+  const createDinoBtn = document.getElementById("#createDinoBtn")
+  createDinoBtn.addEventListener("submit", function (e) {
     e.preventDefault();
     getData(e.target);
   });
