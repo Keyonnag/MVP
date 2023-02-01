@@ -42,7 +42,7 @@ async function createNavbarDropDown(arr){
 // }
 const createDinoBtn = document.getElementById('createDinoBtn')
 
-createDinoBtn.addEventListener('click', function (event) {
+createDinoBtn.addEventListener('submit', function (event) {
 
 	event.preventDefault();
     console.log(JSON.stringify(Object.fromEntries(new FormData(event.target))))
