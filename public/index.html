@@ -92,7 +92,7 @@
     </div>
   </div>
   <div id="dinoCollectionById" class="container">
-    <div class="row">
+    <div id="dinoByTypeRow" class="row">
       <div class="col s6">
         <ul class="collection">
           <li class="collection-item avatar">
@@ -103,7 +103,7 @@
               <p>gender</p>
             </li>
             <li class="collection-item avatar">
-              <i class="material-icons circle red darken-1">favorite</i>
+              <i class="material-icons circle red">favorite</i>
               <span class="title">Health</span>
               <p>23423</p>
             </li>
@@ -136,6 +136,7 @@
   $("#homeBtn").click(function(){
     $("#dino-type-btn-cont").show();
     $("#caraousel-container").show();
+    $("#dinoByTypeRow").hide()
 });
 });
 </script>
