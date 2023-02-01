@@ -27,6 +27,7 @@ function createNavbarDropDown(){
         li.append(a)
     });
 };
+createNavbarDropDown();
 
 
 async function getDinosByType(id){
