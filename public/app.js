@@ -204,9 +204,9 @@ function createCollectionList(arr){
     console.log(row)
 }
 
-var form = document.querySelector('form');
-var data = new FormData(form);
-console.log(data)
+// var form = document.querySelector('form');
+// var data = new FormData(form);
+// console.log(data)
     
 // async function carousolGetDinoList(){}
 // async function createDinoType(){}
