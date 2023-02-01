@@ -30,12 +30,14 @@ async function createNavbarDropDown(arr){
 };
 
 async function createDinoTypeSelectorForDropDown(arr) {
-    const div = document.getElementById('DinoTypeSelector')
-    $("#DinoTypeSelector").html('');
-    arr.forEach((e) => {
-        $("#mySelect").append("<option value='" + e.dino_type_id + "'>" + e.type + "</option>");
-    })
-    $("#DinoTypeSelector").trigger('contentChanged');
+    const div = $('#DinoTypeSelector')
+    // arr.forEach((e) => {
+        const option = document.createElement('option')
+        option.value = 1 //`${e.dino_type_id}`
+        option.innerHTML = 'test' //`${e.type}`
+        div.append(option)
+        console.log(option)
+    // })
 }
 
 
