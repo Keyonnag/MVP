@@ -40,31 +40,24 @@ async function createNavbarDropDown(arr){
 //         console.log(option)
 //     // })
 // }
-const createDinoBtn = document.getElementById('createDinoBtn')
+// const createDinoBtn = document.getElementById('createDinoBtn')
 
-createDinoBtn.addEventListener('submit', function (event) {
-
-	event.preventDefault();
-    
-
-	fetch('https://ark-tracker.onrender.com/dinos', {
-		method: 'POST',
-		body: JSON.stringify(Object.fromEntries(new FormData(event.target))),
-		headers: {
-			'Content-type': 'application/json; charset=UTF-8'
-		}
-	}).then(function (response) {
-		if (response.ok) {
-			return response.json();
-		}
-		return Promise.reject(response);
-	}).then(function (data) {
-		console.log(data);
-	}).catch(function (error) {
-		console.warn(error);
-	});
-    console.log(JSON.stringify(Object.fromEntries(new FormData(event.target))))
-});
+function getData(form) {
+    var formData = new FormData(form);
+  
+    // iterate through entries...
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ": " + pair[1]);
+    }
+  
+    // ...or output as an object
+    console.log(Object.fromEntries(formData));
+  }
+  
+  document.getElementById("#createDinoBtn").addEventListener("submit", function (e) {
+    e.preventDefault();
+    getData(e.target);
+  });
 
 
 async function getDinosByType(id){
