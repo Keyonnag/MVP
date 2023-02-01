@@ -1,14 +1,14 @@
-let dinoTypeArray = []
-
 
 async function getDinoTypeForDropDown() {
     const url = "https://ark-tracker.onrender.com/dino/types"
     const response = await fetch(url)
-    dinoTypeArray = await response.json() 
+    const dinoTypeArray = await response.json() 
     createNavbarDropDown(dinoTypeArray)
+    createDinoTypeSelectorForDropDown(dinoTypeArray)
 };
 
 getDinoTypeForDropDown();
+// todo: add an event listenert to hand database updates
 
 async function createNavbarDropDown(arr){
     const div = document.getElementById('dropdown1')
@@ -28,6 +28,16 @@ async function createNavbarDropDown(arr){
         li.append(a)
     });
 };
+
+async function createDinoTypeSelectorForDropDown(arr) {
+    const div = document.getElementById('DinoTypeSelector')
+    arr.ForEach((e) => {
+        const option = document.createElement('option')
+        option.value = `${e.dino_type_id}`
+        option.innerHTML = `${e.type}`
+        div.append(option)
+    })
+}
 
 
 
@@ -169,6 +179,10 @@ function createCollectionList(arr){
     })
     console.log(row)
 }
+
+var form = document.querySelector('form');
+var data = new FormData(form);
+console.log(data)
     
 // async function carousolGetDinoList(){}
 // async function createDinoType(){}
