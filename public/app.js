@@ -164,6 +164,7 @@ function createCollectionList(arr){
       meleeList.append(melee)
       
     })
+    console.log(row)
 }
     
 // async function carousolGetDinoList(){}
