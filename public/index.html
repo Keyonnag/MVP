@@ -20,14 +20,14 @@
     <li  id="addDinoButton"><a class="waves-effect btn-flat black-text modal-trigger"data-target="addNewDino" data-position="bottom">New Dino</a></li>
   </ul>
 
-  <nav class="light-blue accent-1">
+  <nav class="navbar">
     <div class="nav-wrapper">
-      <a href="#!" class="brand-logo center black-text"><i class="material-icons">cloud</i>My Ark Tracker</a>
+      <a href="#!" class="brand-logo center"><i class="material-icons">cloud</i>My Ark Tracker</a>
       <ul class="left">
-        <li><a class="dropdown-trigger black-text" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li id="homeBtn"><a class="waves-effect btn-flat black-text">Home</a></li>
-        <li  id="addTypeBtn"><a class="waves-effect btn-flat black-text modal-trigger tooltipped hide-on-med-and-down"data-target="addNewDinoType" data-position="bottom" data-tooltip="Add a new Dinosaur Type!">Add Type</a></li>
-         <li  id="addDinoButton"><a class="waves-effect btn-flat black-text modal-trigger tooltipped hide-on-med-and-down"data-target="addNewDino" data-position="bottom" data-tooltip="Add a new Dinosaur!">New Dino</a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li id="homeBtn"><a class="waves-effect white-text btn-flat">Home</a></li>
+        <li  id="addTypeBtn"><a class="waves-effect white-text btn-flat modal-trigger tooltipped hide-on-med-and-down" data-target="addNewDinoType" data-position="bottom" data-tooltip="Add a new Dinosaur Type!">Add Type</a></li>
+         <li  id="addDinoButton"><a class="waves-effect white-text btn-flat modal-trigger tooltipped hide-on-med-and-down"data-target="addNewDino" data-position="bottom" data-tooltip="Add a new Dinosaur!">New Dino</a></li>
       </ul>
     </div>
   </nav>
@@ -76,37 +76,91 @@
           </div>
 
           <div class="input-field col s6">
-            <input id="dyno_name" type="text" class="validate">
-            <label for="dyno_name">Dinosaur Name</label>
+            <input id="dino_name" type="text" class="validate">
+            <label for="dino_name">Dinosaur Name</label>
           </div>
 
           <div class="input-field col s6">
-            <input id="dyno_gender" type="text" class="validate">
-            <label for="dyno_gender">Gender</label>
+            <input id="dino_gender" type="text" class="validate">
+            <label for="dino_gender">Gender</label>
           </div>
 
           <div class="input-field col s3">
-            <input id="dyno_health" type="number" class="validate">
-            <label for="dyno_health">Health</label>
+            <input id="dino_health" type="number" class="validate">
+            <label for="dino_health">Health</label>
           </div>
 
           <div class="input-field col s3">
-            <input id="dyno_stamina" type="number" class="validate">
-            <label for="dyno_stamina">Stamina</label>
+            <input id="dino_stamina" type="number" class="validate">
+            <label for="dino_stamina">Stamina</label>
           </div>
 
           <div class="input-field col s3">
-            <input id="dyno_weight" type="number" class="validate">
-            <label for="dyno_weight">Weight</label>
+            <input id="dino_weight" type="number" class="validate">
+            <label for="dino_weight">Weight</label>
           </div>
 
           <div class="input-field col s3">
-            <input id="dyno_melee" type="number" class="validate">
-            <label for="dyno_melee">Melee</label>
+            <input id="dino_melee" type="number" class="validate">
+            <label for="dino_melee">Melee</label>
           </div>
         </form>
         <div class="modal-footer">
           <button id="createDinoBtn" type="submit" class="waves-effect waves-green btn btn-flat">Submit</button>
+        </div> 
+      </div>
+    </div>
+  </div>
+
+  <div id="updateNewDino" class="modal">
+    <div class="modal-content">
+      <h4>Update Dinosaur Information</h4>
+      <div class="row">
+        <form id="createDinoForm" class="col s12">
+          <div class="input-field col s7 offset-s3">
+            <select id="updateDinoTypeSelector" class="select-trigger">
+              <!-- <option value="" disabled selected>Select Dinosaur Type</option>
+              <option value="1">Megalosaurus</option>
+              <option value="2">Rock Drake</option>
+              <option value="3">Glowtail</option>
+              <option value="4">Shadowmane</option>
+              <option value="5">Bulbdog</option> -->
+            </select>
+            <label>Dinosaur Type</label>
+          </div>
+
+          <div class="input-field col s6">
+            <input id="update_dino_name" type="text" class="validate">
+            <label for="update_dino_name">Dinosaur Name</label>
+          </div>
+
+          <div class="input-field col s6">
+            <input id="update_dino_gender" type="text" class="validate">
+            <label for="update_dino_gender">Gender</label>
+          </div>
+
+          <div class="input-field col s3">
+            <input id="update_dino_health" type="number" class="validate">
+            <label for="update_dino_health">Health</label>
+          </div>
+
+          <div class="input-field col s3">
+            <input id="update_dino_stamina" type="number" class="validate">
+            <label for="update_dino_stamina">Stamina</label>
+          </div>
+
+          <div class="input-field col s3">
+            <input id="update_dino_weight" type="number" class="validate">
+            <label for="update_dino_weight">Weight</label>
+          </div>
+
+          <div class="input-field col s3">
+            <input id="update_dino_melee" type="number" class="validate">
+            <label for="update_dino_melee">Melee</label>
+          </div>
+        </form>
+        <div class="modal-footer">
+          <button id="updateDinoBtn" type="submit" class="waves-effect waves-green btn btn-flat">Submit</button>
         </div> 
       </div>
     </div>
@@ -162,10 +216,11 @@
 <script>
   $(document).ready(function(){
   $('.dropdown-trigger').dropdown();
-  // $('.select-trigger').formSelect();
+  $('#updateDinoTypeSelector').formSelect();
   $('#DinoTypeSelector').formSelect();
   $('#addNewDinoType').modal();
   $('#addNewDino').modal();
+  $('#updateNewDino').modal();
   $('.carousel').carousel();
   $('.tooltipped').tooltip();
   $("#homeBtn").click(function(){

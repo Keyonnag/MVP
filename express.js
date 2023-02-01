@@ -90,7 +90,7 @@ app.route ('/dinos/:id')
         let { body } = req
         if (createDinoValidation(body)) {
             try {
-                const result = client.query ('UPDATE dinos name = $2, gender = $3, health = $4, stamina = $5, weight = $6, melee = $7 WHERE dino_id = $8', [body.type, body.name, body.gender, body.health, body.stamina, body.weight, body.melee, id])
+                const result = client.query ('UPDATE dino_type_id = $1 dinos name = $2, gender = $3, health = $4, stamina = $5, weight = $6, melee = $7 WHERE dino_id = $8', [body.type, body.name, body.gender, body.health, body.stamina, body.weight, body.melee, id])
                 res.status(200).type('application/json').send('Dino Updated Successfully')
             } catch(error) {
                 res.status(500).type('text/plain').send(error)

@@ -1,5 +1,6 @@
 .navbar{
-    margin-bottom: 10%;
+  background-color: rgb(50, 65, 74);
+  color:#ffffff;
 }
 .dropdown-content{
     width: max-content !important;
@@ -21,7 +22,10 @@
   }
   
   body {
-      background-color: #000000;
+      background-image: url("img/arkbackgroundAb.webp");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position-x: center;
   }
   .collection .collection-item {
     background-color: rgb(50, 65, 74);

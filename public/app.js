@@ -1,8 +1,11 @@
 const apiURL = ""
 const createDinoBtn = document.getElementById("createDinoBtn")
+const updateDinoBtn = document.getElementById("updateDinoBtn")
 const createDinoTypeBtn = document.getElementById('createDinoTypeBtn')
 const deleteButton = $('.deleteBtn')
 const updateButton = $('.updateBtn')
+let dinoUpdateId = NaN
+
 
 async function getDinoTypeForDropDown() {
     const url = `${apiURL}/dino/types`
@@ -31,6 +34,28 @@ const createNewDino = async (dinoType, dinoName, dinoGender, dinoHealth, dinoSta
     }
 
     const response = await fetch(`${apiURL}/dinos`, options)
+    const sqlQuery = await response.json()
+}
+
+const updateNewDino = async (dinoType, dinoName, dinoGender, dinoHealth, dinoStamina, dinoWeight, dinoMelee, id) => {
+    const options = {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+            "dino_type_id": `${dinoType}`,
+            "name": `${dinoName}`,
+            "gender": `${dinoGender}`,
+            "health": `${dinoHealth}`,
+            "stamina": `${dinoStamina}`,
+            "weight": `${dinoWeight}`,
+            "melee": `${dinoMelee}`
+        })
+    }
+
+    const response = await fetch(`${apiURL}/dinos/${id}`, options)
     const sqlQuery = await response.json()
 }
 
@@ -83,21 +108,46 @@ async function createDinoTypeSelectorForDropDown(arr) {
     $(document).ready(function() {
         $('select').formSelect();
     });
-    console.log(div)
 }
 
+async function createDinoTypeSelectorForDropDown(arr) {
+    const div = document.getElementById('updateDinoTypeSelector')
+    arr.forEach((e) => {
+        const option = document.createElement('option')
+        option.value = `${e.dino_type_id}`
+        option.innerText =`${e.type}`
+        div.appendChild(option)
+    })
+    $(document).ready(function() {
+        $('select').formSelect();
+    });
+}
 
 createDinoBtn.addEventListener("click", function (e) {
     e.preventDefault();
     const dinoType = document.getElementById('DinoTypeSelector')
-    const dinoName = document.getElementById('dyno_name')
-    const dinoGender = document.getElementById('dyno_gender')      
-    const dinoHealth = document.getElementById('dyno_health')      
-    const dinoStamina = document.getElementById('dyno_stamina')      
-    const dinoWeight = document.getElementById('dyno_weight')      
-    const dinoMelee = document.getElementById('dyno_melee')
+    const dinoName = document.getElementById('dino_name')
+    const dinoGender = document.getElementById('dino_gender')      
+    const dinoHealth = document.getElementById('dino_health')      
+    const dinoStamina = document.getElementById('dino_stamina')      
+    const dinoWeight = document.getElementById('dino_weight')      
+    const dinoMelee = document.getElementById('dino_melee')
     
     createNewDino(dinoType.value, dinoName.value, dinoGender.value, dinoHealth.value, dinoStamina.value, dinoWeight.value, dinoMelee.value)
+});
+
+updateDinoBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    const dinoType = document.getElementById('DinoTypeSelector')
+    const dinoName = document.getElementById('update_dino_name')
+    const dinoGender = document.getElementById('update_dino_gender')      
+    const dinoHealth = document.getElementById('update_dino_health')      
+    const dinoStamina = document.getElementById('update_dino_stamina')      
+    const dinoWeight = document.getElementById('update_dino_weight')      
+    const dinoMelee = document.getElementById('update_dino_melee')
+    console.log(e.target)
+    
+    //updateNewDino(dinoName.value, dinoGender.value, dinoHealth.value, dinoStamina.value, dinoWeight.value, dinoMelee.value, id)
 });
 
 createDinoTypeBtn.addEventListener("click", function (e) {
@@ -116,6 +166,13 @@ async function getDinosByType(id){
     createCollectionList(data)
 }
 
+async function deleteDinobyId(id) {
+    const options = {
+        method: 'DELETE'
+    }
+    const response = await fetch(`${apiURL}/dinos/${id}`, options)
+    const sqlQuery = await response.json() 
+}
  
 function createCollectionList(arr){
     const row = document.getElementById('dinoByTypeRow');
@@ -155,18 +212,24 @@ function createCollectionList(arr){
       const dinoP = document.createElement('li')
       nameList.append(dinoP)
 
-    //   <a class="waves-effect waves-light btn-small">Button</a>
-
-    const dinoUpdate = document.createElement('a')
-    dinoUpdate.classList.add('left', `updateBtn`, 'waves-effect', 'waves-light', 'btn-small')
-    dinoUpdate.id = idData
-    dinoUpdate.innerHTML = 'Update'
-    dinoP.append(dinoUpdate)
+      const dinoUpdate = document.createElement('a')
+      dinoUpdate.classList.add('left', `${idData}`, 'waves-effect', 'waves-light', 'btn-small', 'modal-trigger')
+      dinoUpdate.setAttribute('data-target', 'updateNewDino')
+      dinoUpdate.id = idData
+      dinoUpdate.innerHTML = 'Update'
+      dinoUpdate.addEventListener('click', (e) => {
+        dinoUpdateId = e.target.id;
+        console.log(dinoUpdateId)       
+      })
+      dinoP.append(dinoUpdate)
 
       const dinoDel = document.createElement('a')
       dinoDel.classList.add('right', `deleteBtn`,'waves-effect', 'waves-light', 'btn-small', 'red')
       dinoDel.id = idData
       dinoDel.innerHTML = 'Delete'
+      dinoDel.addEventListener('click', (event) => {
+        deleteDinobyId(dinoDel.id)
+    })
       dinoP.append(dinoDel)
       
       const genderList = document.createElement('li')
