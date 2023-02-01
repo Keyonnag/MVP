@@ -35,6 +35,7 @@ async function createDinoTypeSelectorForDropDown(arr) {
     arr.forEach((e) => {
         $("#mySelect").append("<option value='" + e.dino_type_id + "'>" + e.type + "</option>");
     })
+    $("#DinoTypeSelector").trigger('contentChanged');
 }
 
 
