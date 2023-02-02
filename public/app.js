@@ -5,6 +5,7 @@ const createDinoTypeBtn = document.getElementById('createDinoTypeBtn')
 let dinoUpdateId;
 
 
+
 async function getDinoTypeForDropDown() {
     const url = `${apiURL}/dino/types`
     const response = await fetch(url)
