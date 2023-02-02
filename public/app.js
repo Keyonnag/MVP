@@ -1,4 +1,4 @@
-const apiURL = "https://ark-tracker.onrender.com"
+const apiURL = ""
 const createDinoBtn = document.getElementById("createDinoBtn")
 const updateDinoBtn = document.getElementById("updateDinoBtn")
 const createDinoTypeBtn = document.getElementById('createDinoTypeBtn')
@@ -13,6 +13,8 @@ async function getDinoTypeForDropDown() {
     createNavbarDropDown(dinoTypeArray)
     createDinoTypeSelectorForDropDown(dinoTypeArray)
 };
+
+
 
 async function getDinosByType(id){
     const url = `${apiURL}/dino/type/${id}`
@@ -166,10 +168,51 @@ createDinoTypeBtn.addEventListener("click", function (e) {
     createNewDinoType(dinoTypeName.value)
 });
 
+const Megalosaurus = document.getElementById('1')
+const RockDrake = document.getElementById('2')
+const GlowTail = document.getElementById('3')
+const Shadowmane = document.getElementById('4')
+const Bulbdog = document.getElementById('5')
+const Ravager = document.getElementById('6')
+
+Megalosaurus.addEventListener('click', (e)=> {
+    e.preventDefault();
+    $("#dino-type-btn-cont").hide();
+    $("#caraousel-container").hide();
+    getDinosByType(e.target.id)
+})
+RockDrake.addEventListener('click', (e)=> {
+    e.preventDefault();
+    $("#dino-type-btn-cont").hide();
+    $("#caraousel-container").hide();
+    getDinosByType(e.target.id)
+})
+GlowTail.addEventListener('click', (e)=> {
+    e.preventDefault();
+    $("#dino-type-btn-cont").hide();
+    $("#caraousel-container").hide();
+    getDinosByType(e.target.id)
+})
+Shadowmane.addEventListener('click', (e)=> {
+    e.preventDefault();
+    $("#dino-type-btn-cont").hide();
+    $("#caraousel-container").hide();
+    getDinosByType(e.target.id)
+})
+Bulbdog.addEventListener('click', (e)=> {
+    e.preventDefault();
+    $("#dino-type-btn-cont").hide();
+    $("#caraousel-container").hide();
+    getDinosByType(e.target.id)
+})
+Ravager.addEventListener('click', (e)=> {
+    e.preventDefault();
+    $("#dino-type-btn-cont").hide();
+    $("#caraousel-container").hide();
+    getDinosByType(e.target.id)
+})
 
 
-
- 
 function createCollectionList(arr){
     const row = document.getElementById('dinoByTypeRow');
     $("#dinoByTypeRow").empty();
