@@ -1,7 +1,8 @@
-const apiURL = ""
+const apiURL = "https://ark-tracker.onrender.com"
 const createDinoBtn = document.getElementById("createDinoBtn")
 const updateDinoBtn = document.getElementById("updateDinoBtn")
 const createDinoTypeBtn = document.getElementById('createDinoTypeBtn')
+const getAllDinosBtn = document.getElementById('allDinoButton')
 let dinoUpdateId;
 
 
@@ -18,6 +19,12 @@ async function getDinoTypeForDropDown() {
 
 async function getDinosByType(id){
     const url = `${apiURL}/dino/type/${id}`
+    const response = await fetch(url)
+    data = await response.json() 
+    createCollectionList(data)
+}
+async function getAllDinos(){
+    const url = `${apiURL}/dinos`
     const response = await fetch(url)
     data = await response.json() 
     createCollectionList(data)
@@ -133,7 +140,12 @@ async function createDinoTypeSelectorForDropDown(arr) {
 
 
 // todo: add an event listenert to handle database updates
-
+getAllDinosBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    $("#dino-type-btn-cont").hide();
+    $("#caraousel-container").hide();
+    getAllDinos()
+})
 
 createDinoBtn.addEventListener("click", function (e) {
     e.preventDefault();
