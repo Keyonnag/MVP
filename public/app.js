@@ -1,4 +1,4 @@
-const apiURL = ""
+const apiURL = "https://ark-tracker.onrender.com"
 const createDinoBtn = document.getElementById("createDinoBtn")
 const updateDinoBtn = document.getElementById("updateDinoBtn")
 const createDinoTypeBtn = document.getElementById('createDinoTypeBtn')
