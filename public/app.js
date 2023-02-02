@@ -252,7 +252,7 @@ function createCollectionList(arr){
       nameList.append(dinoP)
 
       const dinoUpdate = document.createElement('a')
-      dinoUpdate.classList.add('left', `${idData}`, 'waves-effect', 'waves-light', 'btn-small', 'modal-trigger')
+      dinoUpdate.classList.add('left', `${idData}`, 'waves-effect', 'waves-light', 'btn-small', 'modal-trigger', 'hide-on-small-and-down')
       dinoUpdate.setAttribute('data-target', 'updateNewDino')
       dinoUpdate.id = idData
       dinoUpdate.innerHTML = 'Update'
