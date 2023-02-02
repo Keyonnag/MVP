@@ -16,7 +16,7 @@
 </head>
 <body>
   <ul id="dropdown1" class="dropdown-content">
-    <li id="homeBtn"><a class="waves-effect black-text btn-flat hide-on-small-and-down">Home</a></li>
+    <li><a class=".homeBtn waves-effect black-text btn-flat hide-on-small-and-down">Home</a></li>
     <li  id="addTypeBtn"><a class="waves-effect btn-flat black-text modal-trigger"data-target="addNewDinoType" data-position="bottom">Add Type</a></li>
     <li  id="addDinoButton"><a class="waves-effect btn-flat black-text modal-trigger"data-target="addNewDino" data-position="bottom">New Dino</a></li>
     <li class="divider" tabindex="-1"></li>
@@ -27,7 +27,7 @@
         <a href="#!" class="brand-logo center"><i class="material-icons">egg</i>My Ark Tracker</a>
         <ul class="left">
           <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
-          <li id="homeBtn"><a class="waves-effect white-text btn-flat hide-on-small-and-down">Home</a></li>
+          <li><a class="homeBtn waves-effect white-text btn-flat hide-on-small-and-down">Home</a></li>
           <li  id="addTypeBtn"><a class="waves-effect white-text btn-flat modal-trigger tooltipped hide-on-med-and-down" data-target="addNewDinoType" data-position="bottom" data-tooltip="Add a new Dinosaur Type!">Add Type</a></li>
           <li  id="addDinoButton"><a class="waves-effect white-text btn-flat modal-trigger tooltipped hide-on-med-and-down"data-target="addNewDino" data-position="bottom" data-tooltip="Add a new Dinosaur!">New Dino</a></li>
         </ul>
@@ -237,7 +237,7 @@
   $('#updateNewDino').modal();
   $('.carousel').carousel();
   $('.tooltipped').tooltip();
-  $("#homeBtn").click(function(){
+  $(".homeBtn").click(function(){
     $("#caraousel-container").show();
     $("#dinoByTypeRow").hide();
 });
